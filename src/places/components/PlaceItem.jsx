@@ -3,6 +3,7 @@ import Card from "../../shared/components/UIElement/Card";
 import Modal from "../../shared/components/UIElement/Modal";
 import "./PlaceItem.css";
 import Button from "../../shared/components/FormElements/Button";
+import Map from "../../shared/components/UIElement/Map";
 
 const PlaceItem = (props) => {
   const [showMap, setShowMap] = useState(false);
@@ -18,8 +19,27 @@ const PlaceItem = (props) => {
           footerClass="place-item__modal-actions"
           footer={<Button onClick={() => setShowMap(false)}>CLOSE</Button>}
         >
-          <div className="map-container">
-            <h2>THE MAP!</h2>
+          <div className="map-container" style={{ padding: "5px" }}>
+            <iframe
+              title="map"
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              scrolling="no"
+              marginHeight="0"
+              marginWidth="0"
+              src={
+                "https://maps.google.com/maps?q=" +
+                props.coordinates.lat.toString() +
+                "," +
+                props.coordinates.lng.toString() +
+                "&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              }
+            ></iframe>
+            <script
+              type="text/javascript"
+              src="https://embedmaps.com/google-maps-authorization/script.js?id=5a33be79e53caf0a07dfec499abf84b7b481f165"
+            ></script>
           </div>
         </Modal>
       )}
